@@ -1,0 +1,193 @@
+@font-face {
+    font-family: Sarasa-Mono-SC;
+    src: url("SarasaMonoSC-Regular.ttf");
+}
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #FCFCFC;
+    overflow: hidden;
+    font-family: Sarasa-Mono-SC;
+}
+
+div.m{
+    height: calc(110% - 192px);
+    width: 80%;
+    position: absolute;
+    top: 84px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -0%);
+    -moz-transform: translate(-50%, -0%);
+    -ms-transform: translate(-50%, -0%);
+    -o-transform: translate(-50%, -0%);
+    transform: translate(-50%, -0%);
+    text-align: center;
+}
+
+div.center{
+    height: 100%;
+    box-sizing: content-box;
+    overflow:initial;
+    margin: 0px;
+    padding: 0px;
+    font-family: Sarasa-Mono-SC;
+}
+
+div.c{
+    height: 84%;
+    display:inline-block;
+}
+
+form{
+    height: 100%;
+    display:inline-block;
+}
+
+fieldset{
+    width: 100%;
+    height: 92%;
+    display:inline-block;
+}
+
+textarea{
+    color:#000000;
+    resize:none;
+    height:100%;
+    width: 100%;
+    border-radius: 12px;
+    border: 0;
+    border: 8px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    filter:drop-shadow(0px 2px 0.1em rgba(0, 0, 0, 0.15)) ;
+} 
+
+input{
+    color:#000000;
+    padding: 2%;
+    height: fit-content;
+    width: 16%;
+    border-radius: 12px;
+    border: 0;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    font-size: 100%;
+    box-sizing: border-box;
+    vertical-align:middle;
+    overflow: hidden;
+    filter:drop-shadow(0px 2px 0.1em rgba(0, 0, 0, 0.15));
+    margin-bottom: -3%;
+}
+
+/* ====== 转换页召唤物勾选按钮 ====== */
+.chk-pill { display: none; }
+.chk-pill + label {
+    display: inline-block;
+    padding: 3px 14px;
+    margin: 0 3px;
+    font-size: 13px;
+    font-family: Sarasa-Mono-SC;
+    border-radius: 14px;
+    border: 1.5px solid #bbb;
+    background: #f5f5f5;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+.chk-pill + label:hover {
+    border-color: #90CAF9;
+    background: #E3F2FD;
+    color: #333;
+}
+.chk-pill:checked + label {
+    background: #64B5F6;
+    border-color: #42A5F5;
+    color: #fff;
+    font-weight: bold;
+}
+.chk-pill:checked + label:hover {
+    background: #42A5F5;
+}
+} 
+
+button{
+    width: 100%;
+}
+
+button.b{
+    width: 100%;
+    font-size: 120%;
+    border-radius: 12px;
+    padding: 2%;
+    color: azure;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+    filter:drop-shadow(0px 2px 0.1em rgba(0, 0, 0, 0.3)) ;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    margin-bottom: 3%;
+}
+button.p{
+    margin-top: 24px;
+    width: 80%;
+    background-color: dodgerblue;
+}
+button.t{
+    margin-top: 24px;
+    width: 80%;
+    background-color: indigo;
+}
+
+button:hover,
+button:focus {
+    /* csslint ignore:start */
+    filter: alpha(opacity=90);
+    /* csslint ignore:end */
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+}
+
+button:active {
+    box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
+    border-color: #000;
+}
+
+button.disabled,
+button.disabled:hover,
+button.disabled:focus,
+button.disabled:active {
+    border: none;
+    background-image: none;
+    /* csslint ignore:start */
+    filter: alpha(opacity=40);
+    /* csslint ignore:end */
+    opacity: 0.40;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+div.d1{
+    color: darkslategray;
+    background-color:rgba(0, 0, 0, 0)
+}
+
+a{
+    border-radius: 12px;
+    font-size: 20px;
+    color: #000;
+}
+
+li{
+    border-radius: 12px;
+}
+
+.pure-form,.pure-button{
+    font-family: Sarasa-Mono-SC;
+}
