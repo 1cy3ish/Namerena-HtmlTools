@@ -17,6 +17,63 @@ const sname_eng = [
     "SkillVoid", "SkillVoid", "SkillVoid", "SkillVoid", "SkillVoid"
 ]
 
+// ol技能名(小写) → sname_eng下标
+var sname_ol_idx = {};
+for (var oi = 0; oi < 40; oi++) {
+    sname_ol_idx[sname_eng[oi].toLowerCase()] = oi;
+}
+
+function getOL(olstr){
+    // olstr = {"attrs":[...],"skills":{...},"name_factor_enabled":bool}
+    var oljson = JSON.parse(olstr);
+    var diyname = new Array(3);
+
+    // attrs: first 7 subtract 36 (matching getDIY behavior)
+    diyname[0] = oljson.attrs.slice(0, 8);
+    for (let j = 0; j < 7; j++) diyname[0][j] -= 36;
+
+    diyname[1] = new Array(40);
+    diyname[2] = new Array(40);
+
+    var skills = oljson.skills;
+    var keys = Object.keys(skills);
+    var j = 0;
+    for (let kk = 0; kk < keys.length; kk++) {
+        var skName = keys[kk];       // e.g. "sklfire"
+        var skVal = skills[skName];  // 5 or "2*46" or "40+30"
+        var skIdx = sname_ol_idx[skName];
+        if (skIdx === undefined) continue;
+        var level;
+        if (typeof skVal === "string") {
+            if (skVal.indexOf("*") >= 0) {
+                // LastBoost: "2*46" → base * 2
+                var parts = skVal.split("*");
+                level = parseInt(parts[0]) * parseInt(parts[1]);
+            } else if (skVal.indexOf("+") >= 0) {
+                // SlotBoost: "40+30" → base + boost
+                var parts = skVal.split("+");
+                level = parseInt(parts[0]) + parseInt(parts[1]);
+            } else {
+                level = parseInt(skVal);
+            }
+        } else {
+            level = skVal;
+        }
+        diyname[1][j] = level;
+        diyname[2][j] = skIdx;
+        j++;
+    }
+
+    for (let i = 0; i < 40; i++) {
+        if (i >= j) {
+            diyname[1][i] = 99;
+            diyname[2][i] = 99;
+        }
+    }
+
+    return diyname;
+}
+
 // ========== 召唤物输出辅助 ==========
 function makeSummonLine(name, nametmp, suffix, modifyProps, getSkills, soption) {
     name.load_team(nametmp[1])
@@ -101,11 +158,18 @@ function ConvertStart() {
 
             if(nametmp[1]=="!")name.TV()
 
-            //DIY
+            //DIY / OL
             var diytmp = Array.prototype.slice.call(names[s].split('+diy'))
+            var oltmp = Array.prototype.slice.call(names[s].split('+ol:'))
             if(diytmp.length>1){
                 names[s] = diytmp[0]
                 diyname = getDIY(diytmp[1])
+                var props = diyname[0]
+                name.freq = diyname[1]
+                name.skill = diyname[2]
+            }else if(oltmp.length>1){
+                names[s] = oltmp[0]
+                diyname = getOL(oltmp[1])
                 var props = diyname[0]
                 name.freq = diyname[1]
                 name.skill = diyname[2]
@@ -232,7 +296,7 @@ function ConvertStart() {
 }
 
 function Team_Calc() {
-    const input = document.getElementById('TCinput').value.trim().split('\n');
+    const input = document.getElementById('TCinput').value.trim().split(/[\n+]/);
     const n = input.length;
     const team = [];
     const o_skillf = Array.from({ length: n }, () => Array(40).fill(0));
@@ -295,16 +359,49 @@ function Team_Calc() {
       }
       output += "\n";
       output += `${input[i]}+`;
-      output += "diy[";
-      for (let j = 0; j < 7;j++) output+=`${prop_bonus[j]+36},`;
-      output+=`${prop_bonus[7]}]{`;
-      for (let j=0; j<40; j++) {
-        if (team[i].freqq[j]) {
-          sklid = team[i].skill[j];
-          output += `\"${sname_eng[sklid]}\":${team[i].freqq[j]},`;
+      var diyOption = document.getElementById("TCdiyOption").selectedIndex;
+      if (diyOption == 1) {
+        // 新SIY (ol格式): 检测 LastBoost / SlotBoost
+        // 找最后一个主动技能 (LastBoost)
+        var lastActive = -1;
+        for (let j = 0; j < 40; j++) {
+          if (team[i].skill[j] < 25 && team[i].freqq[j] > 0) lastActive = j;
         }
+        output += "ol:{\"attrs\":[";
+        for (let j = 0; j < 7;j++) output+=`${prop_bonus[j]+36},`;
+        output+=`${prop_bonus[7]}],\"skills\":{`;
+        var firstSkill = true;
+        for (let j=0; j<40; j++) {
+          if (team[i].freqq[j]) {
+            sklid = team[i].skill[j];
+            if (!firstSkill) output += ",";
+            firstSkill = false;
+            output += "\"" + sname_eng[sklid].toLowerCase() + "\":";
+            if (j == lastActive) {
+              // LastBoost: 末尾主动技翻倍 (level = base * 2)
+              output += "\"2*" + (team[i].freqq[j] >> 1) + "\"";
+            } else if (team[i].freqq[j] > team[i].freq[j]) {
+              // SlotBoost: 末尾座位加成 (level = base + boost)
+              output += "\"" + team[i].freq[j] + "+" + (team[i].freqq[j] - team[i].freq[j]) + "\"";
+            } else {
+              output += team[i].freqq[j];
+            }
+          }
+        }
+        output += "},\"name_factor_enabled\":true}\n\n\n";
+      } else {
+        // 旧DIY
+        output += "diy[";
+        for (let j = 0; j < 7;j++) output+=`${prop_bonus[j]+36},`;
+        output+=`${prop_bonus[7]}]{`;
+        for (let j=0; j<40; j++) {
+          if (team[i].freqq[j]) {
+            sklid = team[i].skill[j];
+            output += `\"${sname_eng[sklid]}\":${team[i].freqq[j]},`;
+          }
+        }
+        output += "\"useless\":0}\n\n\n";
       }
-      output += "\"useless\":0}\n\n\n";
     }
     document.getElementById('TCoutput').value = output;
     dis.innerText = "八围 + " + bonus_cnt[0].toFixed(1) + " 技能 + " + bonus_cnt[1];

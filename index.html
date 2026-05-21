@@ -1,29 +1,33 @@
 <!doctype html>
 <html lang="zh" scrolling="no">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="res/HtmlTool-icon1.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="res/HtmlTool-icon1.ico" type="image/x-icon">
-        <link type="text/css" rel="stylesheet" href="res/style.css">
-        <link type="text/css" rel="stylesheet" href="res/pure-min.css">
-        <script type="text/javascript" src="res/name.js"></script>
-        <script type="text/javascript" src="res/model.js"></script>
-        <script type="text/javascript" src="res/main.js"></script>
-        <script type="text/javascript" src="res/convert.js"></script>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="res/HtmlTool-icon1.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="res/HtmlTool-icon1.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="res/style.css">
+    <link type="text/css" rel="stylesheet" href="res/pure-min.css">
+    <script type="text/javascript" src="res/name.js"></script>
+    <script type="text/javascript" src="res/model.js"></script>
+    <script type="text/javascript" src="res/main.js"></script>
+    <script type="text/javascript" src="res/convert.js"></script>
     <meta charset="utf-8">
     <title>Namerena HtmlTools</title>
     <style>
-        .tab-content{
+        .tab-content {
             display: none;
             margin-top: 30px;
         }
-        .tab-content:target{
+
+        .tab-content:target {
             display: block;
         }
     </style>
 </head>
+
 <body onload="DefaultMode()" style="font-family: 'Sarasa-Mono-SC';">
-    <div class="pure-menu pure-menu-horizontal" style="text-align: center; background-color: #64B5F6; padding: 8px 64px 8px 64px;">
+    <div class="pure-menu pure-menu-horizontal"
+        style="text-align: center; background-color: #64B5F6; padding: 8px 64px 8px 64px;">
         <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="#tab1" class="pure-menu-link">去皮</a></li>
             <li class="pure-menu-item"><a href="#tab2" class="pure-menu-link">成队</a></li>
@@ -36,8 +40,9 @@
         <div class='m'>
             <div class='center pure-g'>
                 <div class='pure-u-1-1' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0 auto;">
-                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id = 'RSdis' style="width: 58.33%">去除测号器中输出的评分部分</div>
+                    <form class="pure-form" style="width: 98%;margin: 0 auto;">
+                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id='RSdis'
+                            style="width: 58.33%">去除测号器中输出的评分部分</div>
                         <select id="RSOption" style="width:18%;margin-left: 1.4%;">
                             <option>单评分在头</option>
                             <option>单评分在尾</option>
@@ -51,19 +56,23 @@
                     </form>
                 </div>
                 <div class='c pure-u-14-24' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('RSinput')">📂 上传</button>
-                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id = 'RSinput' placeholder="输入"></textarea>
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('RSinput')">📂
+                                上传</button>
+                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id='RSinput'
+                                placeholder="输入"></textarea>
                         </fieldset>
                     </form>
                 </div>
                 <div class='c pure-u-10-24' style="text-align: right;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button download-btn" onclick="downloadFile('RSoutput','去皮-out.txt')">📥 下载</button>
-                            <textarea style="width: 100%;margin: 16px auto;" id = 'RSoutput' placeholder="输出"></textarea>
+                            <button type="button" class="pure-button download-btn"
+                                onclick="downloadFile('RSoutput','去皮-out.txt')">📥 下载</button>
+                            <textarea style="width: 100%;margin: 16px auto;" id='RSoutput' placeholder="输出"></textarea>
                         </fieldset>
+                    </form>
                 </div>
                 <button type="button" style="width: 100%;" class="pure-button" onclick='RemoveScores()'>运行</button>
             </div>
@@ -73,26 +82,33 @@
         <div class='m'>
             <div class='center pure-g'>
                 <div class='pure-u-1-1' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0 auto;">
-                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id = 'Tdis' style="width: 25%;font-family: Sarasa-Mono-SC;">生成 A + B 组队形式</div>
+                    <form class="pure-form" style="width: 98%;margin: 0 auto;">
+                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id='Tdis'
+                            style="width: 25%;font-family: Sarasa-Mono-SC;">生成 A + B 组队形式</div>
                     </form>
                 </div>
                 <div class='c pure-u-1-4' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('inputA')">📂 A上传</button>
-                            <textarea style="width: 100%;height: 42%;margin: 16px 0 0 0" id = 'inputA' placeholder="输入A"></textarea>
-                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('inputB')">📂 B上传</button>
-                            <textarea style="width: 100%;height: 58%;margin: 3px 0 0 0" id = 'inputB' placeholder="输入B"></textarea>
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('inputA')">📂
+                                A上传</button>
+                            <textarea style="width: 100%;height: 42%;margin: 16px 0 0 0" id='inputA'
+                                placeholder="输入A"></textarea>
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('inputB')">📂
+                                B上传</button>
+                            <textarea style="width: 100%;height: 58%;margin: 3px 0 0 0" id='inputB'
+                                placeholder="输入B"></textarea>
                         </fieldset>
                     </form>
                 </div>
                 <div class='c pure-u-3-4' style="text-align: right;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button download-btn" onclick="downloadFile('Toutput','成队-out.txt')">📥 下载</button>
-                            <textarea style="width: 100%;margin: 16px auto;" id = 'Toutput' placeholder="输出"></textarea>
+                            <button type="button" class="pure-button download-btn"
+                                onclick="downloadFile('Toutput','成队-out.txt')">📥 下载</button>
+                            <textarea style="width: 100%;margin: 16px auto;" id='Toutput' placeholder="输出"></textarea>
                         </fieldset>
+                    </form>
                 </div>
                 <button type="button" style="width: 100%;" class="pure-button" onclick='GenTeams()'>运行</button>
             </div>
@@ -102,8 +118,9 @@
         <div class='m'>
             <div class='center pure-g'>
                 <div class='pure-u-1-1' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0 auto;">
-                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id = 'Cdis' style="width: 25%;font-family: Sarasa-Mono-SC;">ID 属性转换器</div>
+                    <form class="pure-form" style="width: 98%;margin: 0 auto;">
+                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id='Cdis'
+                            style="width: 25%;font-family: Sarasa-Mono-SC;">ID 属性转换器</div>
                         <span class="pure-form">
                             <select id="COption" style="width:16%;margin-left: 1%;">
                                 <option>单行格式</option>
@@ -111,23 +128,28 @@
                             </select>
                             <input type="checkbox" id="chkShadow" class="chk-pill"><label for="chkShadow">幻影</label>
                             <input type="checkbox" id="chkSummon" class="chk-pill"><label for="chkSummon">使魔</label>
-                            <input type="checkbox" id="chkZombie" class="chk-pill"><label for="chkZombie">丧尸</label>                        </span>
+                            <input type="checkbox" id="chkZombie" class="chk-pill"><label for="chkZombie">丧尸</label>
+                        </span>
                     </form>
                 </div>
                 <div class='c pure-u-1-4' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('Cinput')">📂 上传</button>
-                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id = 'Cinput' placeholder="输入"></textarea>
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('Cinput')">📂
+                                上传</button>
+                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id='Cinput'
+                                placeholder="输入"></textarea>
                         </fieldset>
                     </form>
                 </div>
                 <div class='c pure-u-3-4' style="text-align: right;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button download-btn" onclick="downloadFile('Coutput','转换-out.txt')">📥 下载</button>
-                            <textarea style="width: 100%;margin: 16px auto;" id = 'Coutput' placeholder="输出"></textarea>
+                            <button type="button" class="pure-button download-btn"
+                                onclick="downloadFile('Coutput','转换-out.txt')">📥 下载</button>
+                            <textarea style="width: 100%;margin: 16px auto;" id='Coutput' placeholder="输出"></textarea>
                         </fieldset>
+                    </form>
                 </div>
                 <button type="button" style="width: 100%;" class="pure-button" onclick='ConvertStart()'>运行</button>
             </div>
@@ -137,8 +159,9 @@
         <div class='m'>
             <div class='center pure-g'>
                 <div class='pure-u-1-1' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0 auto;">
-                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id = 'SCdis' style="width: 41.67%;font-family: Sarasa-Mono-SC;">评分模型计算</div>
+                    <form class="pure-form" style="width: 98%;margin: 0 auto;">
+                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id='SCdis'
+                            style="width: 41.67%;font-family: Sarasa-Mono-SC;">评分模型计算</div>
                         <span class="pure-form">
                             <select id="SCoption" style="width:10%;margin-left: 0.6%;" onchange="ChangeOption()">
                                 <option>XP</option>
@@ -156,19 +179,23 @@
                     </form>
                 </div>
                 <div class='c pure-u-10-24' style="text-align: left;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('SCinput')">📂 上传</button>
-                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id = 'SCinput' placeholder="输入"></textarea>
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('SCinput')">📂
+                                上传</button>
+                            <textarea style="width: 100%;margin: 16px auto;" class="pure-input-1-1" id='SCinput'
+                                placeholder="输入"></textarea>
                         </fieldset>
                     </form>
                 </div>
                 <div class='c pure-u-14-24' style="text-align: right;">
-                    <form class="pure-form"  style="width: 98%;margin: 0;">
+                    <form class="pure-form" style="width: 98%;margin: 0;">
                         <fieldset class="pure-group" style="margin-bottom: 0px;">
-                            <button type="button" class="pure-button download-btn" onclick="downloadFile('SCoutput','评分-out.txt')">📥 下载</button>
-                            <textarea style="width: 100%;margin: 16px auto;" id = 'SCoutput' placeholder="输出"></textarea>
+                            <button type="button" class="pure-button download-btn"
+                                onclick="downloadFile('SCoutput','评分-out.txt')">📥 下载</button>
+                            <textarea style="width: 100%;margin: 16px auto;" id='SCoutput' placeholder="输出"></textarea>
                         </fieldset>
+                    </form>
                 </div>
                 <button type="button" style="width: 100%;" class="pure-button" onclick='ScoreStart()'>运行</button>
             </div>
@@ -177,55 +204,62 @@
     <div id="tab5" class="tab-content">
         <div class='m'>
             <div class='center pure-g'>
-              <div class='pure-u-1-1' style="text-align: left;">
-                <form class="pure-form"  style="width: 98%;margin: 0 auto;">
-                    <div class="pure-button pure-input-1-2 pure-button-disabled d1" id = 'TCdis' style="width: 31.33%;font-family: Sarasa-Mono-SC;">组队加成转换器</div>
-                </form>
+                <div class='pure-u-1-1' style="text-align: left;">
+                    <form class="pure-form" style="width: 98%;margin: 0 auto;">
+                        <div class="pure-button pure-input-1-2 pure-button-disabled d1" id='TCdis'
+                            style="width: 21.33%">组队加成转换器</div>
+                        <select id="TCdiyOption" style="width:12%;margin-left: 1.4%;">
+                            <option>旧DIY</option>
+                            <option>新SIY</option>
+                        </select>
+                    </form>
+                </div>
+                <!-- 输入区域 -->
+                <div class='c pure-u-1-3' style="text-align: left;">
+                    <form class="pure-form" style="width: 94%; margin: 0 auto;">
+                        <fieldset class="pure-group" style="margin-bottom: 16px;">
+                            <button type="button" class="pure-button upload-btn" onclick="uploadFile('TCinput')">📂
+                                上传</button>
+                            <textarea style="width: 100%; margin: 16px auto;" class="pure-input-1-1" id='TCinput'
+                                placeholder="输入团队数据，一行一个"></textarea>
+                        </fieldset>
+
+                    </form>
+                </div>
+                <!-- 输出区域 -->
+                <div class='c pure-u-2-3' style="text-align: right;">
+                    <form class="pure-form" style="width: 100%; margin: 0 auto;">
+                        <fieldset class="pure-group" style="margin-bottom: 16px;">
+                            <button type="button" class="pure-button download-btn"
+                                onclick="downloadFile('TCoutput','加成-out.txt')">📥 下载</button>
+                            <textarea style="width: 99%; margin: 16px auto;" id='TCoutput' placeholder="输出"></textarea>
+                        </fieldset>
+                    </form>
+                </div>
+                <button type="button" class="pure-button" onclick='Team_Calc()'>运行</button>
             </div>
-              <!-- 输入区域 -->
-              <div class='c pure-u-1-3' style="text-align: left;">
-                <form class="pure-form" style="width: 94%; margin: 0 auto;">
-                  <fieldset class="pure-group" style="margin-bottom: 16px;">
-                    <button type="button" class="pure-button upload-btn" onclick="uploadFile('TCinput')">📂 上传</button>
-                    <textarea style="width: 100%; margin: 16px auto;" class="pure-input-1-1" id='TCinput'
-                      placeholder="输入团队数据，一行一个"></textarea>
-                  </fieldset>
-                  
-                </form>
-              </div>
-              <!-- 输出区域 -->
-              <div class='c pure-u-2-3' style="text-align: right;">
-                <form class="pure-form" style="width: 100%; margin: 0 auto;">
-                  <fieldset class="pure-group" style="margin-bottom: 16px;">
-                    <button type="button" class="pure-button download-btn" onclick="downloadFile('TCoutput','加成-out.txt')">📥 下载</button>
-                    <textarea style="width: 99%; margin: 16px auto;" id='TCoutput' placeholder="输出"></textarea>
-                  </fieldset>
-                </form>
-              </div>
-              <button type="button" class="pure-button" onclick='Team_Calc()'>运行</button>
-            </div>
-          </div>
+        </div>
     </div>
 </body>
 
 <script type="text/javascript">
     let menu_items = document.getElementsByTagName("li")
 
-    function DefaultMode(){
+    function DefaultMode() {
         let menu_buttons = document.getElementsByTagName("a")
         menu_buttons[2].click()
     }
 
-    for(let i=0; i<menu_items.length; i++) {
-        menu_items[i].onclick = function (){
-            menu_items[i].style.backgroundColor="#eee"
-            for(let j=0; j<menu_items.length; j++) {
-                if(j!=i)menu_items[j].style.backgroundColor="rgba(0, 0, 0, 0)"
+    for (let i = 0; i < menu_items.length; i++) {
+        menu_items[i].onclick = function () {
+            menu_items[i].style.backgroundColor = "#eee"
+            for (let j = 0; j < menu_items.length; j++) {
+                if (j != i) menu_items[j].style.backgroundColor = "rgba(0, 0, 0, 0)"
             }
         }
     }
 
-    function ChangeOption(){
+    function ChangeOption() {
         index = document.getElementById("SCoption").selectedIndex
         //items = document.getElementsByTagName("input")
         items = new Array(4)
@@ -235,7 +269,7 @@
         items[3] = document.getElementById("lim4")
         items[4] = document.getElementById("lim5")
 
-        switch(index){
+        switch (index) {
             case 0:
                 items[0].setAttribute("placeholder", "XP")
                 items[1].setAttribute("placeholder", "XD")
@@ -243,10 +277,10 @@
                 items[3].setAttribute("placeholder", "不使用")
                 items[4].setAttribute("placeholder", "不使用")
 
-                items[0].style.display='inline'
-                items[2].style.display='none'
-                items[3].style.display='none'
-                items[4].style.display='none'
+                items[0].style.display = 'inline'
+                items[2].style.display = 'none'
+                items[3].style.display = 'none'
+                items[4].style.display = 'none'
                 break;
             case 1:
                 items[0].setAttribute("placeholder", "SCP")
@@ -255,10 +289,10 @@
                 items[3].setAttribute("placeholder", "SDT")
                 items[4].setAttribute("placeholder", "不使用")
 
-                items[0].style.display='inline'
-                items[2].style.display='inline'
-                items[3].style.display='inline'
-                items[4].style.display='none'
+                items[0].style.display = 'inline'
+                items[2].style.display = 'inline'
+                items[3].style.display = 'inline'
+                items[4].style.display = 'none'
                 break;
             case 2:
                 items[0].setAttribute("placeholder", "主力评分不使用")
@@ -267,10 +301,10 @@
                 items[3].setAttribute("placeholder", "SHSPJ")
                 items[4].setAttribute("placeholder", "不使用")
 
-                items[0].style.display='none'
-                items[2].style.display='none'
-                items[3].style.display='inline'
-                items[4].style.display='none'
+                items[0].style.display = 'none'
+                items[2].style.display = 'none'
+                items[3].style.display = 'inline'
+                items[4].style.display = 'none'
                 break;
             case 3:
                 items[0].setAttribute("placeholder", "SQP")
@@ -279,10 +313,10 @@
                 items[3].setAttribute("placeholder", "SCQD")
                 items[4].setAttribute("placeholder", "不使用")
 
-                items[0].style.display='inline'
-                items[2].style.display='inline'
-                items[3].style.display='inline'
-                items[4].style.display='none'
+                items[0].style.display = 'inline'
+                items[2].style.display = 'inline'
+                items[3].style.display = 'inline'
+                items[4].style.display = 'none'
                 break;
             case 4:
                 items[0].setAttribute("placeholder", "SCP")
@@ -291,10 +325,10 @@
                 items[3].setAttribute("placeholder", "SRH")
                 items[4].setAttribute("placeholder", "SPJ")
 
-                items[0].style.display='inline'
-                items[2].style.display='inline'
-                items[3].style.display='inline'
-                items[4].style.display='inline'
+                items[0].style.display = 'inline'
+                items[2].style.display = 'inline'
+                items[3].style.display = 'inline'
+                items[4].style.display = 'inline'
                 break;
             default:
                 break;
@@ -305,11 +339,11 @@
         var input = document.createElement('input');
         input.type = 'file';
         input.accept = '.txt';
-        input.onchange = function(e) {
+        input.onchange = function (e) {
             var file = e.target.files[0];
             if (!file) return;
             var reader = new FileReader();
-            reader.onload = function(ev) {
+            reader.onload = function (ev) {
                 document.getElementById(textareaId).value = ev.target.result;
             };
             reader.readAsText(file);

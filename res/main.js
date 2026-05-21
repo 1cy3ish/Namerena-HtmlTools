@@ -96,8 +96,9 @@ function ScoreStart() {
             name.load_name(nametmp[0])
             if(nametmp[1]=="!")name.TV()
 
-            //DIY
+            //DIY / OL
             var diytmp = Array.prototype.slice.call(names[s].split('+diy'))
+            var oltmp = Array.prototype.slice.call(names[s].split('+ol:'))
             if(diytmp.length>1){
                 names[s] = diytmp[0]
                 nametmp = Array.prototype.slice.call(names[s].split('@'));
@@ -106,6 +107,17 @@ function ScoreStart() {
                 name.load_name(nametmp[0])
 
                 diyname = getDIY(diytmp[1])
+                var props = diyname[0]
+                name.freq = diyname[1]
+                name.skill = diyname[2]
+            }else if(oltmp.length>1){
+                names[s] = oltmp[0]
+                nametmp = Array.prototype.slice.call(names[s].split('@'));
+                if(nametmp.length<2)nametmp[1]=nametmp[0]
+                name.load_team(nametmp[1])
+                name.load_name(nametmp[0])
+
+                diyname = getOL(oltmp[1])
                 var props = diyname[0]
                 name.freq = diyname[1]
                 name.skill = diyname[2]
