@@ -75,6 +75,16 @@ function getOL(olstr){
 }
 
 // ========== 召唤物输出辅助 ==========
+function boostLastActiveMinionSkill(skills) {
+    for (var i = skills.length - 1; i >= 0; i--) {
+        if (skills[i][1] > 0) {
+            skills[i][1] *= 2
+            break
+        }
+    }
+    return skills
+}
+
 function makeSummonLine(name, nametmp, suffix, modifyProps, getSkills, soption) {
     name.load_team(nametmp[1])
     name.load_name(nametmp[0] + suffix)
@@ -248,7 +258,7 @@ function ConvertStart() {
 
             if (showShadow) tmp3 += makeSummonLine(name, nametmp, '?shadow', function(p) { p[7] = Math.floor(p[7] / 2); }, function(n) {
                 var lv = Math.max(0, Math.trunc((Math.min(n.name_base[64], n.name_base[65], n.name_base[66], n.name_base[67]) - 10) / 2) + 36);
-                return lv > 0 ? [['附体', lv]] : [];
+                return lv > 0 ? boostLastActiveMinionSkill([['附体', lv]]) : [];
             }, soption)
             if (showSummon) tmp3 += makeSummonLine(name, nametmp, '?summon', function(p) { p[0] = 0; p[1] = rawProps[1]; p[4] = 0; p[5] = rawProps[5]; p[7] = Math.max(1, Math.floor(p[7] / 3)); }, function(n) {
                 var snames = ['火球', '火球', '自爆'];
@@ -274,7 +284,7 @@ function ConvertStart() {
                 for (var i = 0; i < 3; i++) {
                     sk.push([snames[order[i]], levels[i]]);
                 }
-                return sk;
+                return boostLastActiveMinionSkill(sk);
             }, soption)
             if (showZombie) tmp3 += makeSummonLine(name, nametmp, '?zombie', function(p) { p[0] = 0; p[6] = 0; p[7] = Math.max(1, Math.floor(p[7] / 2)); }, function() { return []; }, soption)
 
